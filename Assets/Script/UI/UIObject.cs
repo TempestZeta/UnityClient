@@ -19,4 +19,14 @@ public class UIObject : MonoBehaviour
     {
 
     }
+
+    virtual public void Close()
+    {
+
+    }
+
+    virtual public void GetFocus()
+    {
+
+    }
 }

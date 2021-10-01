@@ -17,11 +17,14 @@ public class TankController : MonoBehaviour
 
     void Update()
     {
-        Move();
-
-        if (Input.GetKeyUp(KeyCode.Space))
+        if(!GameManager.GetInstance().CheckUIFocus())
         {
-            FireBullet();
+            Move();
+
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                FireBullet();
+            }
         }
     }
 

@@ -16,11 +16,32 @@ public class ChatController : UIObject
 
     void Update()
     {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            Close();
+        }
 
+        if (Input.GetKeyUp(KeyCode.Return))
+        {
+            Action();
+        }
     }
 
     public override void Open()
     {
-        GUIUtility.keyboardControl = input.GetInstanceID();
+        input.ActivateInputField();
+    }
+
+    public override void Close()
+    {
+        input.text = "";
+        gameObject.SetActive(false);
+
+        GameManager.GetInstance().CloseUI(this);
+    }
+
+    public override void Action()
+    {
+
     }
 }

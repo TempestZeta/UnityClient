@@ -33,4 +33,18 @@ public class GameManager : MonoBehaviour
     {
         listUI.Add(ui);
     }
+
+    public void CloseUI(UIObject ui)
+    {
+        if(null != ui)
+        {
+            listUI.Remove(ui);
+
+            if(listUI.Count > 0)
+            {
+                UIObject lastUI = listUI[listUI.Count - 1];
+                lastUI.GetFocus();
+            }
+        }
+    }
 }
