@@ -4,24 +4,44 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public readonly float BULLET_SPPED = 100.0f;
+    public readonly float BULLET_SPPED = 10.0f;
 
-    private Rigidbody rigidbody;
+    private Rigidbody bulletRigid;
     private bool isFire = false;
 
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        bulletRigid = GetComponent<Rigidbody>();
         gameObject.SetActive(false);
+    }
+
+    private void Start()
+    {
+        FireBullet();
+    }
+
+    private void Update()
+    {
+        if (isFire)
+        {
+            transform.Translate(transform.forward * BULLET_SPPED * Time.deltaTime);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Collision");
+
         if (collision.gameObject.tag.Equals("Wall"))
         {
             gameObject.SetActive(false);
             isFire = false;
+        } else if (collision.gameObject.tag.Equals("Bullet"))
+        {
+            Debug.Log("Bullet Collision");
         }
+
+
     }
 
     public void FireBullet()
@@ -29,11 +49,11 @@ public class Bullet : MonoBehaviour
         if (isFire)
             return;
 
-        if(null != rigidbody)
+        if(null != bulletRigid)
         {
             isFire = true;
-            Debug.Log("Bullet Forward is " + transform.forward * BULLET_SPPED);
-            rigidbody.AddForce(transform.forward * BULLET_SPPED);
+            
+            //bulletRigid.AddForce();
         }
         else
         {

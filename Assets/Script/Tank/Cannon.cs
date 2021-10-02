@@ -29,8 +29,8 @@ public class Cannon : MonoBehaviour
 
             b.gameObject.SetActive(true);
             b.transform.position = transform.position;
-            b.transform.rotation = Quaternion.identity;
-            b.transform.Rotate(Vector3.up * transform.eulerAngles.y);
+            //b.transform.rotation = Quaternion.identity;
+            //b.transform.Rotate(Vector3.up * transform.eulerAngles.y);
             b.FireBullet();
             break;
         }
